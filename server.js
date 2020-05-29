@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-if (process.env.DEV_ENV) {
+if (process.env.NODE_ENV === 'dev') {
   require('dotenv').config();
 }
 
@@ -39,5 +39,5 @@ app.put('/image', image.handleImage(db))
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
 
 app.listen(process.env.PORT || 3000, ()=> {
-  console.log('app is running on port ${process.env.PORT}')
+  console.log(`app is running on port ${process.env.PORT || 3000}`)
 })

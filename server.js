@@ -16,12 +16,10 @@ const db = knex({
   client: 'pg',
   connection: {
     connectionString: process.env.DATABASE_URL,
-    ssl: true,
+    ssl: {
+      rejectUnauthorized: false
+    }
   }
-});
-
-db.select('*').from('users').then(data => {
-  console.log(data);
 });
 
 const app = express();
